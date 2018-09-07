@@ -12,7 +12,7 @@ function BSTNode(value) {
 
         let newNode = new BSTNode(val);
          // check which side
-         if (this.Value <= val) {
+        if (this.Value <= val) {
             // check right for null
             if (this.Right == null) {
                 // if so, set newNode to right
@@ -26,8 +26,24 @@ function BSTNode(value) {
         }
         // look left
         else {
-           
+        
+            // check left side for null
+            if(this.Left == null){
+                this.Left = newNode;
+            }
+            else {
+                this.Left.Add(val);
+            }
         }
+    }
+
+    this.Min = function() {
+
+        // is there a Left?
+        if(this.Left != null)
+            return this.Left.Min();
+        
+        return this.Value;
     }
 
 }
@@ -51,4 +67,15 @@ function BST() {
         return this;
 
     }
+
+    this.Min = function() {
+        if(this.Root == null) {
+            console.log("EXCEPTION: Tree is Empty!")
+            return;
+        }
+
+        return this.Root.Min();
+    }
 }
+
+var test = new BST();
